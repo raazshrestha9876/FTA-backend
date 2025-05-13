@@ -37,8 +37,13 @@ const userSchema = new mongoose.Schema({
         type: Number,
         min: 0
     },
-    resetPasswordToken: String,
-    resetPasswordExpires: Date,
+    role: {
+        type: String,
+        enum: ['user', 'admin'],
+        default: 'user'
+    },
+    resetPasswordToken: String, // Token to reset password
+    resetPasswordExpires: Date, // Expiration date for the reset token
 }, {timestamps: true});
 
 userSchema.pre('save', async function(next) {
@@ -54,10 +59,11 @@ userSchema.methods.matchPassword = async function(enteredPassword) {
 }
 
 userSchema.methods.getResetPasswordToken = function() {
-    // Generate a token
+    // Generate a token in plain text for sending in email
     const resetToken = crypto.randomBytes(20).toString('hex');
 
-    // Hash the token and set it to resetPasswordToken field
+    // Hash the token and set it to resetPasswordToken field for storage in the database for security
+    // This is done to prevent the token from being easily guessed or brute-forced
     this.resetPasswordToken = crypto.createHash('sha256').update(resetToken).digest('hex');
 
     // Set the expiration time for the token (1 hour)
