@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db';
 import authRoutes from './routes/authRoutes';
+import profileRoutes from './routes/profileRoutes';
 import cookieParser from 'cookie-parser';
 
 dotenv.config();
@@ -15,6 +16,7 @@ app.use(cookieParser());
 connectDB();
 
 app.use('/api/auth', authRoutes);
+app.use('/api/profile', profileRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

@@ -1,5 +1,5 @@
 import express from 'express';
-import { register, login, forgetPassword, resetPassword } from '../services/authService';
+import { register, login, forgetPassword, resetPassword } from '../controllers/authController';
 import { validate } from '../middlewares/validate';
 import { registerValidator, loginValidator } from '../validators/authValidator';
 
