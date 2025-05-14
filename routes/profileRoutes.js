@@ -1,14 +1,13 @@
 import express from 'express';
-import { getUserProfile, updateUserProfile, deleteUserProfile } from '../controllers/profileController';
-import { validate } from '../middlewares/validate';
-import { updateProfileValidator } from '../validators/profileValidator';
-
+import { getUserProfile, updateUserProfile, deleteUserProfile } from '../controllers/profileController.js';
+import { validate } from '../middlewares/validate.js';
+import { updateProfileValidator } from '../validators/profileValidator.js';
 
 const router = express.Router();
 
 // Route to get user profile
 router.get('/:userId', updateProfileValidator, validate, getUserProfile);
-router.put('/:userId', validate, updateUserProfile);
-router.delete('/:userId', validate, deleteUserProfile);
+router.put('/:userId', updateUserProfile);
+router.delete('/:userId', deleteUserProfile);
 
 export default router;
