@@ -20,6 +20,7 @@ app.use('/api/profile', profileRoutes);
 app.use('/api/exercise/categories', categoryRoutes);
 app.use('/api/exercise/days', dayRoutes);
 app.use('/api/exercise/exercises', exerciseRoutes);
+app.use('/api/exercise/workout', workoutRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
