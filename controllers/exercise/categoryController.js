@@ -11,7 +11,9 @@ export const getAllCategories = async (req, res) => {
 
 export const createCategory = async (req, res) => {
   try {
-    const category = await categoryService.createCategory(req.body);
+    const { name } = req.body;
+    const image = req.file.path.replace(/\\/g, "/");
+    const category = await categoryService.createCategory(name, image);
     res.status(201).json(category);
   } catch (error) {
     res.status(400).json({ message: error.message });

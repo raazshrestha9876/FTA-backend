@@ -2,97 +2,81 @@ import { body } from "express-validator";
 
 // Validator for exercise data
 export const categoryValidator = [
-  body("name")
-    .isEmpty()
-    .withMessage("Name is required")
-    .trim()
+  body("name").notEmpty().withMessage("Name is required").trim(),
+  body("image").notEmpty().withMessage("Image is required"),
 ];
 
-export const daysValidator = [
-    body("category").isEmpty().withMessage("Category is required")
-    .isMongoId(),
-    body('dayNumber').isInt({ min: 1, max: 7 })
-    .withMessage('Day number must be an integer between 1 and 7'),
-    body('muscleType')
-    .isIn(['chest', 'back', 'shoulders', 'arms', 'legs', 'full-body', 'rest'])
-    .withMessage('Invalid muscle type'),
-]
-
-
-export const exerciseValidator = [
-  body("name")
+export const subcategoryValidator = [
+  body("category")
     .notEmpty()
-    .withMessage("Name is required")
-    .trim(),
-
-  body("instructions")
-    .notEmpty()
-    .withMessage("Instructions are required")
-    .trim(),
-
-  body("equipment")
-    .notEmpty()
-    .withMessage("Equipment is required")
-    .isIn(["none", "dumbbell", "barbell", "resistance band", "machine", "kettlebell", "bodyweight"])
-    .withMessage("Invalid equipment type"),
-
-  body("day")
-    .notEmpty()
-    .withMessage("Day is required")
+    .withMessage("Category is required")
     .isMongoId()
-    .withMessage("Invalid day ID"),
+    .withMessage("Category must be a valid Mongo ID"),
 
-  body("image")
+  body("dayNumber")
     .notEmpty()
-    .withMessage("Image is required")
-    .isString()
-    .withMessage("Image must be a string"),
+    .withMessage("Day number is required")
+    .isInt({ min: 1, max: 7 })
+    .withMessage("Day number must be an integer between 1 and 7"),
 
-  body("videoUrl")
-    .notEmpty()
-    .withMessage("Video URL is required")
-    .isString()
-    .withMessage("Video URL must be a string"),
-];
-
-export const updateExerciseValidator = [
   body("name")
-    .optional()
-    .isString()
-    .withMessage("Name must be a string")
-    .trim(),
+    .notEmpty()
+    .withMessage("Name is required")
+    .isArray({ min: 1 })
+    .withMessage("Name must be a non-empty array"),
 
-  body("instructions")
-    .optional()
-    .isString()
-    .withMessage("Instructions must be a string")
-    .trim(),
+  body("name.*").isString().withMessage("Each name must be a string"),
 
-  body("equipment")
-    .optional()
-    .isIn([
-      "none",
-      "dumbbell",
-      "barbell",
-      "resistance band",
-      "machine",
-      "kettlebell",
-      "bodyweight"
-    ])
-    .withMessage("Invalid equipment type"),
-
-  body("day")
-    .optional()
-    .isMongoId()
-    .withMessage("Day must be a valid Mongo ID"),
-
-  body("image")
-    .optional()
-    .isString()
-    .withMessage("Image must be a string"),
-
-  body("videoUrl")
-    .optional()
-    .isString()
-    .withMessage("Video URL must be a string"),
+  body("description").notEmpty().withMessage("Description is required"),
 ];
+
+
+
+// export const exerciseValidator = [
+//   body("subcategory")
+//     .notEmpty()
+//     .withMessage("Subcategory is required")
+//     .isMongoId()
+//     .withMessage("Subcategory must be a valid Mongo ID"),
+
+//   body("name")
+//     .notEmpty()
+//     .withMessage("Exercise name is required")
+//     .isString()
+//     .withMessage("Exercise name must be a string"),
+
+//   // Remove image validation from here because it's coming from `req.file`
+
+//   body("sets")
+//     .notEmpty()
+//     .withMessage("Sets are required")
+//     .isInt({ min: 1 })
+//     .withMessage("Sets must be an integer greater than or equal to 1"),
+
+//   body("duration")
+//     .notEmpty()
+//     .withMessage("Duration is required")
+//     .isInt({ min: 20, max: 60 })
+//     .withMessage("Duration must be between 20 and 60 minutes"),
+
+//   body("instructions")
+//     .notEmpty()
+//     .withMessage("Instructions are required")
+//     .isString()
+//     .withMessage("Instructions must be a string"),
+
+//   body("videoUrl")
+//     .optional()
+//     .isURL()
+//     .withMessage("Video URL must be a valid URL"),
+
+//   body("focusArea")
+//     .notEmpty()
+//     .withMessage("Focus area is required")
+//     .isArray({ min: 1 })
+//     .withMessage("Focus area must be a non-empty array"),
+
+//   body("focusArea.*")
+//     .isString()
+//     .withMessage("Each focus area must be a string"),
+// ];
