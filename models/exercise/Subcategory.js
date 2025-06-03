@@ -14,7 +14,7 @@ const SubcategorySchema = new mongoose.Schema(
       max: 7,
     },
     name: {
-      type: [String],
+      type: String,
       required: true,
     },
     description: {
