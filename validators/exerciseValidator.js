@@ -2,8 +2,8 @@ import { body } from "express-validator";
 
 // Validator for exercise data
 export const categoryValidator = [
-  body("name").notEmpty().withMessage("Name is required").trim(),
-  body("image").notEmpty().withMessage("Image is required"),
+  body("name").isEmpty().withMessage("Name is required").trim(),
+  body("image").isEmpty().withMessage("Image is required"),
 ];
 
 export const subcategoryValidator = [
