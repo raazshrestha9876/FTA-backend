@@ -1,34 +1,29 @@
-import { body } from "express-validator";
+// import { body } from "express-validator";
 
-// Validator for exercise data
-export const categoryValidator = [
-  body("name").isEmpty().withMessage("Name is required").trim(),
-  body("image").isEmpty().withMessage("Image is required"),
-];
 
-export const subcategoryValidator = [
-  body("category")
-    .notEmpty()
-    .withMessage("Category is required")
-    .isMongoId()
-    .withMessage("Category must be a valid Mongo ID"),
+// export const subcategoryValidator = [
+//   body("category")
+//     .notEmpty()
+//     .withMessage("Category is required")
+//     .isMongoId()
+//     .withMessage("Category must be a valid Mongo ID"),
 
-  body("dayNumber")
-    .notEmpty()
-    .withMessage("Day number is required")
-    .isInt({ min: 1, max: 7 })
-    .withMessage("Day number must be an integer between 1 and 7"),
+//   body("dayNumber")
+//     .notEmpty()
+//     .withMessage("Day number is required")
+//     .isInt({ min: 1, max: 7 })
+//     .withMessage("Day number must be an integer between 1 and 7"),
 
-  body("name")
-    .notEmpty()
-    .withMessage("Name is required")
-    .isArray({ min: 1 })
-    .withMessage("Name must be a non-empty array"),
+//   body("name")
+//     .notEmpty()
+//     .withMessage("Name is required")
+//     .isArray({ min: 1 })
+//     .withMessage("Name must be a non-empty array"),
 
-  body("name.*").isString().withMessage("Each name must be a string"),
+//   body("name.*").isString().withMessage("Each name must be a string"),
 
-  body("description").notEmpty().withMessage("Description is required"),
-];
+//   body("description").notEmpty().withMessage("Description is required"),
+// ];
 
 
 

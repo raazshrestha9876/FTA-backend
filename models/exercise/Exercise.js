@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const ExerciseSchema = new mongoose.Schema(
   {
+
     subcategory: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Subcategory",
@@ -10,11 +11,9 @@ const ExerciseSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
-      
     },
     image: {
       type: String,
-   
     },
     sets: {
       type: Number,
@@ -35,7 +34,7 @@ const ExerciseSchema = new mongoose.Schema(
       type: String,
     },
     focusArea: {
-      type: [String],
+      type: String,
       required: true,
     },
   },

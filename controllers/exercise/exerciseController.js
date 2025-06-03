@@ -1,13 +1,13 @@
 import * as exerciseService from "../../services/exercise/exerciseService.js";
 
-// export const getAllExercises = async(req, res) => {
-//     try{
-//     const exercises = await exerciseService.getAllExercises();
-//     res.status(200).json(exercises);
-//     }catch(error){
-//         res.status(500).json({message: error.message})
-//     }
-// }
+export const getAllExercises = async(req, res) => {
+    try{
+    const exercises = await exerciseService.getAllExercises();
+    res.status(200).json(exercises);
+    }catch(error){
+        res.status(500).json({message: error.message})
+    }
+}
 
 // export const getExercisesByDay = async (req, res) => {
 //     try {
@@ -19,23 +19,22 @@ import * as exerciseService from "../../services/exercise/exerciseService.js";
 //     }
 // }
 
-// export const getExerciseById = async (req, res) => {
-//     try {
-//         const { exerciseId } = req.params;
-//         const exercise = await exerciseService.getExerciseById(exerciseId);
-//         if (!exercise) {
-//             return res.status(404).json({ message: "Exercise not found" });
-//         }
-//         res.status(200).json(exercise);
-//     } catch (error) {
-//         res.status(500).json({ message: error.message });
-//     }
-// }
+export const getExerciseById = async (req, res) => {
+    try {
+        const { exerciseId } = req.params;
+        const exercise = await exerciseService.getExerciseById(exerciseId);
+        if (!exercise) {
+            return res.status(404).json({ message: "Exercise not found" });
+        }
+        res.status(200).json(exercise);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
 
 export const createExercise = async (req, res) => {
   try {
-    const image = req.file;
-    const exercise = await exerciseService.createExercise(req.body, image);
+    const exercise = await exerciseService.createExercise(req.body, req.file.filename);
     res.status(201).json(exercise);
   } catch (error) {
     res.status(500).json({ message: error.message });
