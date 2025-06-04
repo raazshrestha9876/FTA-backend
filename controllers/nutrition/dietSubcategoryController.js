@@ -13,7 +13,6 @@ export const createDietSubcategory = async (req, res) => {
 export const getDietSubcategory = async (req, res) => {
   try {
     const dietSubcategories = await dietSubcategoryService.getDietSubcategory();
-    console.log(dietSubcategories);
     res.status(200).json(dietSubcategories);
   } catch (error) {
     res.status(500).json({ message: error.message });
