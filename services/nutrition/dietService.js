@@ -1,7 +1,7 @@
 import Diet from "../../models/nutrition/Diet.js";
 
 export const createDiet = async (dietData, dietImage) => {
-  const { subcategory, name, intake, macronutrient, features, benefits } =
+  const { subcategory, name, intake, macronutrient, features, benefits, totalCalories, macronutrientPercent } =
     dietData;
 
   const parsedMacronutrient =
@@ -11,6 +11,12 @@ export const createDiet = async (dietData, dietImage) => {
 
   const parsedFeatures =
     typeof macronutrient === "string" ? JSON.parse(features) : features;
+
+    const parsedMacronutrientPercent =
+    typeof macronutrientPercent === "string"
+      ? JSON.parse(macronutrientPercent)
+      : macronutrientPercent;
+
 
   const diet = new Diet({
     subcategory,
@@ -24,6 +30,13 @@ export const createDiet = async (dietData, dietImage) => {
     features: parsedFeatures,
     benefits,
     image: dietImage,
+    totalCalories: Number(totalCalories),
+    macronutrientPercent: {
+      protein: Number(parsedMacronutrientPercent.protein),
+      carbohydrates: Number(parsedMacronutrientPercent.carbohydrates),
+      fats: Number(parsedMacronutrientPercent.fats),
+    },
+
   });
 
   await diet.save();
