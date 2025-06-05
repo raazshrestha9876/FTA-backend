@@ -42,6 +42,25 @@ const dietSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  totalCalories:{
+    type: Number,
+    required: true,
+  },
+  macronutrientPercent:{
+    protein: {
+      type: Number,
+      required: true,
+    },
+    carbohydrates: {
+      type: Number,
+      required: true,
+    },
+    fats: {
+      type: Number,
+      required: true,
+    },
+  }
+
 });
 const Diet = mongoose.model("Diet", dietSchema);
 export default Diet;

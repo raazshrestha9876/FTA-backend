@@ -18,9 +18,16 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(
+  cors({
+    origin: ["http://localhost:5000", "exp://192.168.100.124:8081"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use('/uploads', express.static('uploads'))
+app.use("/uploads", express.static("uploads"));
 
 connectDB();
 

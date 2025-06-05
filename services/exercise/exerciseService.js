@@ -1,21 +1,24 @@
 import Exercise from "../../models/exercise/Exercise.js";
 
-export const getAllExercises = async (page, limit) => {
+export const getAllExercises = async (page, limit, searchTerm) => {
   let skip = 0;
-  let page;
-  let limit;
+  let pg;
+  let lim;
 
   if (page && limit) {
-    page = parseInt(page);
-    limit = parseInt(limit);
-    skip = (page - 1) * limit;
+    pg = parseInt(page);
+    lim = parseInt(limit);
+    skip = (pg - 1) * lim;
   }
-  const exercises = await Exercise.find()
+
+  const exercises = await Exercise.find({
+    name: { $regex: searchTerm, $options: "i" },
+  })
     .populate({
       path: "subcategory",
       populate: { path: "category", select: "name" },
     })
-    .limit(limit)
+    .limit(lim)
     .skip(skip);
 
   const totalCounts = await Exercise.countDocuments();

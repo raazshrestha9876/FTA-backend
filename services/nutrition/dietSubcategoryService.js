@@ -16,12 +16,10 @@ export const getDietSubcategory = async () => {
     "category",
     "name"
   );
-  console.log(dietSubcategories);
   return dietSubcategories;
 };
 
 export const getDietSubcategoryByCategory = async (categoryId) => {
-
   const dietSubcategories = await DietSubcategory.find({
     category: categoryId,
   });
