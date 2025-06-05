@@ -2,12 +2,12 @@ import * as exerciseService from "../../services/exercise/exerciseService.js";
 
 export const getAllExercises = async (req, res) => {
   try {
-    const { exercises, totalCounts } = await exerciseService.getAllExercises(
+    const { exercises, totalCounts, totalPages, currentPage } = await exerciseService.getAllExercises(
       req.query.page || 1,
       req.query.limit || 10,
       req.query.searchTerm || ""
     );
-    res.status(200).json(exercises, totalCounts);
+    res.status(200).json(exercises, totalCounts, totalPages, currentPage);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

@@ -22,8 +22,10 @@ export const getAllExercises = async (page, limit, searchTerm) => {
     .skip(skip);
 
   const totalCounts = await Exercise.countDocuments();
+  const totalPages = Math.ceil(totalCounts / lim);
+  const currentPage = pg;
 
-  return { exercises, totalCounts };
+  return { exercises, totalCounts, totalPages, currentPage };
 };
 
 export const getExerciseById = async (exerciseId) => {
