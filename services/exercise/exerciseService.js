@@ -1,11 +1,26 @@
 import Exercise from "../../models/exercise/Exercise.js";
 
-export const getAllExercises = async () => {
-  const exercises = await Exercise.find().populate({
-    path: "subcategory",
-    populate: { path: "category" },
-  });
-  return exercises;
+export const getAllExercises = async (page, limit) => {
+  let skip = 0;
+  let page;
+  let limit;
+
+  if (page && limit) {
+    page = parseInt(page);
+    limit = parseInt(limit);
+    skip = (page - 1) * limit;
+  }
+  const exercises = await Exercise.find()
+    .populate({
+      path: "subcategory",
+      populate: { path: "category", select: "name" },
+    })
+    .limit(limit)
+    .skip(skip);
+
+  const totalCounts = await Exercise.countDocuments();
+
+  return { exercises, totalCounts };
 };
 
 export const getExerciseById = async (exerciseId) => {

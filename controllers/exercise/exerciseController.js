@@ -2,7 +2,12 @@ import * as exerciseService from "../../services/exercise/exerciseService.js";
 
 export const getAllExercises = async(req, res) => {
     try{
-    const exercises = await exerciseService.getAllExercises();
+
+
+    const exercises = await exerciseService.getAllExercises(
+      req.query.page || 10,
+      req.query.limit || 1,
+    );
     res.status(200).json(exercises);
     }catch(error){
         res.status(500).json({message: error.message})
