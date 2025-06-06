@@ -77,3 +77,14 @@ export const getDietById = async (categoryId) => {
   });
   return diet;
 };
+
+export const getDietBySubcategory = async (subcategoryId) => {
+  const diets = await Diet.find({ subcategory: subcategoryId }).populate({
+    path: "subcategory",
+    populate: {
+      path: "category",
+      select: "name",
+    },
+  });
+  return diets;
+}

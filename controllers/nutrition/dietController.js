@@ -34,3 +34,13 @@ export const getDietById = async (req, res) => {
     res.status(500).json({ message: "Error" });
   }
 };
+
+export const getDietBySubcategory = async (req, res) => {
+  try {
+    const diets = await dietService.getDietBySubcategory(req.params.subcategoryId);
+    res.status(200).json(diets);
+  } catch (error) {
+    res.status(500).json({ message: "Error" });
+  }
+}
+
