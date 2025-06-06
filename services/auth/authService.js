@@ -1,4 +1,4 @@
-import User from "../models/User";
+import User from "../models/user/User";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import { sendEmail } from "../utils/sendEmail";
