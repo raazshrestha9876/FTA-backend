@@ -45,7 +45,6 @@ export const getExerciseById = async (exerciseId) => {
 // };
 
 export const createExercise = async (exerciseData, exerciseImage) => {
-  console.log(exerciseData);
   const {
     subcategory,
     name,
