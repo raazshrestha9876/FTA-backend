@@ -10,8 +10,18 @@ export const createDiet = async (req, res) => {
 };
 export const getAllDiet = async (req, res) => {
   try {
-    const diet = await dietService.getAllDiet();
-    res.status(200).json(diet);
+    const { diets, totalCounts, totalPages, currentPage } =
+      await dietService.getAllDiet(
+        req.query.page || 1,
+        req.query.limit || 10,
+        req.query.searchTerm || ""
+      );
+    res.status(200).json({
+      data: diets,
+      totalCounts: totalCounts,
+      totalPages: totalPages,
+      currentPage: currentPage,
+    });
   } catch (error) {
     res.status(500).json({ message: "Error" });
   }

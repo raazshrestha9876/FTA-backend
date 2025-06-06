@@ -43,15 +43,29 @@ export const createDiet = async (dietData, dietImage) => {
   return diet;
 };
 
-export const getAllDiet = async () => {
-  const diets = await Diet.find().populate({
+export const getAllDiet = async (page, limit, searchTerm) => {
+
+  let skip = 0;
+  let lim;
+  let pg;
+
+  if(limit && page){
+    lim = parseInt(limit);
+    pg = parseInt(page);
+    skip = (pg - 1) * lim;
+  }
+  const diets = await Diet.find({name: {$regex: searchTerm, $option: 'i' }}).populate({
     path: "subcategory",
    populate: {
       path: "category",
       select: "name",
     },
-  });
-  return diets;
+  }).limit(lim).skip(skip);
+  const totalCounts = await Diet.countDocuments();
+  const totalPages = Math.ceil(totalCounts / lim);
+  const currentPage = pg;
+  return {diets, totalCounts, totalPages, currentPage};
+  
 };
 export const getDietById = async (categoryId) => {
   const diet = await Diet.findById(categoryId).populate({

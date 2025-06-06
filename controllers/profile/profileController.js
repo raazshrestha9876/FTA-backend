@@ -1,4 +1,4 @@
-import * as ProfileService from "../services/profileService";
+import * as ProfileService from "../../services/profileService";
 
 export const getUserProfile = async (req, res) => {
   try {
