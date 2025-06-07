@@ -9,8 +9,8 @@ export const getSubcategoryByCategory = async (category) => {
     return subcategory;
 }
 export const createSubcategory = async (subCategoryData) => {
-    const { category, dayNumber, name, description } = subCategoryData;
-    const subcategory = new Subcategory({ category, dayNumber, name, description});
+    const { category, dayNumber, name, description, image } = subCategoryData;
+    const subcategory = new Subcategory({ category, dayNumber, name, description, image});
     await subcategory.save();
     return subcategory;
 }

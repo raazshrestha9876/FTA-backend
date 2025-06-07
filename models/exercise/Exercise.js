@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 
 const ExerciseSchema = new mongoose.Schema(
   {
-
     subcategory: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Subcategory",
@@ -26,6 +25,10 @@ const ExerciseSchema = new mongoose.Schema(
       min: 20,
       max: 60,
     },
+    metValue: {
+      type: Number,
+      required: true,
+    },
     instructions: {
       type: String,
       required: true,
@@ -34,8 +37,32 @@ const ExerciseSchema = new mongoose.Schema(
       type: String,
     },
     focusArea: {
-      type: String,
+      type: [string],
       required: true,
+      enum: [
+        "legs",
+        "arms",
+        "core",
+        "back",
+        "chest",
+        "shoulders",
+        "glutes",
+        "full body",
+        "cardio",
+        "upper body",
+        "lower body",
+        "abs",
+        "biceps",
+        "triceps",
+        "quads",
+        "hamstrings",
+        "calves",
+        "mobility",
+        "balance",
+        "flexibility",
+        "endurance",
+        "strength",
+      ],
     },
   },
   { timestamps: true }

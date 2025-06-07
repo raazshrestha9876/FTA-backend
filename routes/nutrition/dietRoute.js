@@ -6,8 +6,11 @@ const router = express.Router();
 
 router.post('/add', upload.single('image'), createDiet);
 router.get('/list', getAllDiet);
-router.get('/:subcategoryId', getDietBySubcategory);
-router.get('/:id', getDietById );
+router.get('/:dietId', getDietById );
+router.get('/subcategory/:subcategoryId', getDietBySubcategory);
+
+
+
 
 
 export default router;

@@ -36,13 +36,13 @@ export const getExerciseById = async (exerciseId) => {
   return exercise;
 };
 
-// export const getExercisesByDay = async (dayId) => {
-//   const exercises = await Exercise.find({ day: dayId }).populate({
-//     path: "day",
-//     populate: { path: "category" },
-//   });
-//   return exercises;
-// };
+export const getExercisesBySubcategory = async (subcategoryId) => {
+  const exercises = await Exercise.find({ subcategory: subcategoryId }).populate({
+    path: "subcategory",
+    populate: { path: "category" },
+  });
+  return exercises;
+};
 
 export const createExercise = async (exerciseData, exerciseImage) => {
   const {
@@ -53,7 +53,10 @@ export const createExercise = async (exerciseData, exerciseImage) => {
     instructions,
     focusArea,
     videoUrl,
+    metValue,
   } = exerciseData;
+
+  const focusAreaArray = Array.isArray(focusArea) ? focusArea : [];
 
   const exercise = new Exercise({
     subcategory,
@@ -61,8 +64,9 @@ export const createExercise = async (exerciseData, exerciseImage) => {
     sets,
     duration,
     instructions,
-    focusArea,
+    focusArea: focusAreaArray,
     videoUrl,
+    metValue,
     image: exerciseImage,
   });
   await exercise.save();

@@ -75,19 +75,12 @@ export const getAllDiet = async (page, limit, searchTerm) => {
   return { diets, totalCounts, totalPages, currentPage };
 };
 
-export const getDietById = async (categoryId) => {
-  const diet = await Diet.findById(categoryId).populate({
-    path: "subcategory",
-    populate: {
-      path: "category",
-      select: "name",
-    },
-  });
+export const getDietById = async (dietId) => {
+  const diet = await Diet.findById(dietId);
   return diet;
 };
 
 export const getDietBySubcategory = async (subcategoryId) => {
-  console.log('hello')
   const diets = await Diet.find({ subcategory: subcategoryId }).populate({
     path: "subcategory",
     populate: {

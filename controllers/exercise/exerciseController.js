@@ -19,15 +19,15 @@ export const getAllExercises = async (req, res) => {
   }
 };
 
-// export const getExercisesByDay = async (req, res) => {
-//     try {
-//         const dayId = req.params.dayId;
-//         const exercises = await exerciseService.getExercisesByDay(dayId);
-//         res.status(200).json(exercises);
-//     } catch (error) {
-//         res.status(500).json({ message: error.message });
-//     }
-// }
+export const getExercisesBySubcategory = async (req, res) => {
+    try {
+        const { subcategoryId } = req.params;
+        const exercises = await exerciseService.getExercisesBySubcategory(subcategoryId);
+        res.status(200).json(exercises);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
 
 export const getExerciseById = async (req, res) => {
   try {

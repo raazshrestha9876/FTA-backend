@@ -28,11 +28,12 @@ export const getSubcategoryByCategory = async (req, res) => {
 export const createSubcategory = async (req, res) => {
   try {
     const { category, dayNumber, name, description } = req.body;
+    const image = req.file.filename;
     const categoryExists = await Category.findById(category);
     if (!categoryExists) {
       return res.status(404).json({ message: "Category not found" });
     }
-    const subcategory = await subcategoryService.createSubcategory({ category, dayNumber, name, description });
+    const subcategory = await subcategoryService.createSubcategory({ category, dayNumber, name, description, image });
     res.status(201).json(subcategory);
   } catch (error) {
     res.status(500).json({ message: error.message });

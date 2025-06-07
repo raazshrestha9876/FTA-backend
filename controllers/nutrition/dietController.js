@@ -28,7 +28,8 @@ export const getAllDiet = async (req, res) => {
 };
 export const getDietById = async (req, res) => {
   try {
-    const diet = await dietService.getDietById(req.params.id);
+    const { dietId } = req.params;
+    const diet = await dietService.getDietById(dietId);
     res.status(200).json(diet);
   } catch (error) {
     res.status(500).json({ message: "Error" });

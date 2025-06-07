@@ -22,6 +22,10 @@ const SubcategorySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    image: {
+      type: String,
+      required: true,
+    }
   },
   { timestamps: true }
 );
