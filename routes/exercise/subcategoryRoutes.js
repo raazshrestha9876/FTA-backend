@@ -7,6 +7,6 @@ const router = express.Router();
 
 router.get('/list', getAllSubcategories);
 router.get('/:category', getSubcategoryByCategory);
-router.post("/add", upload.single('image'), createSubcategory);
+router.post("/add", createSubcategory);
 
 export default router;

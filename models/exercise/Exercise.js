@@ -37,7 +37,7 @@ const ExerciseSchema = new mongoose.Schema(
       type: String,
     },
     focusArea: {
-      type: [string],
+      type: [String],
       required: true,
       enum: [
         "legs",
