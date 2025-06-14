@@ -4,8 +4,8 @@ export const getAllExercises = async (req, res) => {
   try {
     const { exercises, totalCounts, totalPages, currentPage } =
       await exerciseService.getAllExercises(
-        req.query.page || 1,
-        req.query.limit || 10,
+        req.query.page ,
+        req.query.limit ,
         req.query.searchTerm || ""
       );
     res.status(200).json({

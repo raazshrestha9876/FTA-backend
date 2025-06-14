@@ -1,38 +1,38 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const workoutSchema =  new mongoose.Schema({
+const workoutSchema = new mongoose.Schema(
+  {
     user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
-    exercises: [{
+    exercises: [
+      {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Exercise',
-        required: true
-    }],
+        ref: "Exercise",
+        required: true,
+      },
+    ],
     startTime: {
-        type: Date,
-        required: true
+      type: Date,
+      required: true,
     },
     end: {
-        type: Date,
-        required: true
+      type: Date,
+      required: true,
     },
-    duration: {
-        type: Number,
-        required: true
+    durationTotal: {
+      type: Number,
+      required: true,
     },
     caloriesBurned: {
-        type: Number,
-        required: true
+      type: Number,
+      required: true,
     },
-    date: {
-        type: Date,
-        default: Date.now
-    },
-    
-}, { timestamps: true });
+  },
+  { timestamps: true }
+);
 
-const Workout = mongoose.model('Workout', workoutSchema);
+const Workout = mongoose.model("Workout", workoutSchema);
 export default Workout;

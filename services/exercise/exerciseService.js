@@ -10,7 +10,6 @@ export const getAllExercises = async (page, limit, searchTerm) => {
     lim = parseInt(limit);
     skip = (pg - 1) * lim;
   }
-
   const exercises = await Exercise.find({
     name: { $regex: searchTerm, $options: "i" },
   })
@@ -56,7 +55,7 @@ export const createExercise = async (exerciseData, exerciseImage) => {
     metValue,
   } = exerciseData;
 
-  const focusAreaArray = Array.isArray(focusArea) ? focusArea : [];
+  const parsedfocusArea = typeof focusArea === "string" ? JSON.parse(focusArea) : focusArea;
 
   const exercise = new Exercise({
     subcategory,
@@ -64,7 +63,7 @@ export const createExercise = async (exerciseData, exerciseImage) => {
     sets,
     duration,
     instructions,
-    focusArea: focusAreaArray,
+    focusArea: parsedfocusArea,
     videoUrl,
     metValue,
     image: exerciseImage,

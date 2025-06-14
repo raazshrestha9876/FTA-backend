@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
-// import authRoutes from './routes/authRoutes';
+import authRoutes from "./routes/auth/authRoutes.js"
 // import profileRoutes from './routes/profileRoutes';
 import cookieParser from "cookie-parser";
 import categoryRoutes from "./routes/exercise/categoryRoutes.js";
@@ -12,6 +12,7 @@ import dietCategoryRoute from "./routes/nutrition/dietCategoryRoute.js";
 import dietSubcategoryRoute from "./routes/nutrition/dietSubcategoryRoute.js";
 import dietRoute from "./routes/nutrition/dietRoute.js";
 import reviewRoute from './routes/review/reviewRoute.js';
+
 // import botRoute from "./routes/bot/botRoute.js"
 // import http from "http";
 // import { Socket } from "socket.io";
@@ -51,7 +52,7 @@ connectDB();
 //   });
 // });
 
-// app.use('/api/auth', authRoutes);
+app.use('/api/auth', authRoutes);
 // app.use('/api/profile', profileRoutes);
 app.use("/api/exercise/categories", categoryRoutes);
 app.use("/api/exercise/subcategories", subcategoryRoutes);
