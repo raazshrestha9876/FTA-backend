@@ -1,6 +1,4 @@
 import mongoose from "mongoose";
-import bcrypt from "bcryptjs";
-import crypto from "crypto";
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -11,13 +9,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        lowercase: true,
     },
     password: {
         type: String,
         required: true,
-        minlength: 6,
-        select: false // Exclude password from queries by default
+       
     },
     gender: {
         type: String, 
@@ -25,16 +21,12 @@ const userSchema = new mongoose.Schema({
     },
     age: {
         type: Number,
-        min: 0,
-        max: 120
     },
     height: {
         type: Number,
-        min: 0
     },
     weight: {
         type: Number,
-        min: 0
     },
     role: {
         type: String,
