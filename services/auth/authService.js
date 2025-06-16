@@ -50,6 +50,34 @@ export const getUser = async (userId) => {
   return user;
 };
 
+export const updateUser = async (userId, userData) => {
+  const { name, email, password, age, gender, height, weight } = userData;
+  const user = await User.findById(userId);
+  if (!user) {
+    throw new Error("User not found");
+  }
+  let hashedPassword;
+  if (password) {
+    hashedPassword = await bcrypt.hash(password, 10);
+  }
+  const updatedUser = await User.findByIdAndUpdate(
+    userId,
+    {
+      $set: {
+        name,
+        email,
+        password: hashedPassword,
+        age,
+        gender,
+        height,
+        weight,
+      },
+    },
+    { new: true }
+  );
+  return updatedUser;
+};
+
 // export const forgetPassword = async (email) => {
 //     const user = await User.findOne({ email });
 //     if(!user){
