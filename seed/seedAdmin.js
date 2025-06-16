@@ -1,9 +1,7 @@
 import mongoose from "mongoose";
-import dotenv from "dotenv";
 import User from "../models/user/User.js";
-import connectDB from "../config/db";
+import connectDB from "../config/db.js";
 
-dotenv.config();
 
 const seedAdmin = async () => {
   try {
