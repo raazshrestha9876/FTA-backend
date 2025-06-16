@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import User from "../models/User.js";
+import User from "../models/user/User.js";
 
 // Middleware to protect routes and check user roles
 // This middleware checks if the user is authenticated and has the required role to access the route
