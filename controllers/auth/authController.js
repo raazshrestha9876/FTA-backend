@@ -1,25 +1,34 @@
-import * as authService from '../../services/auth/authService.js';
-import { generateToken } from '../../utils/generateToken.js';
+import * as authService from "../../services/auth/authService.js";
+import { generateToken } from "../../utils/generateToken.js";
 
 export const register = async (req, res) => {
-    console.log(req.body);
-    try{
-        const user = await authService.register(req.body);
-        res.status(201).json(user);;
-    }catch(error){
-        res.status(400).json({message: error.message});
-    }
-}
+  console.log(req.body);
+  try {
+    const user = await authService.register(req.body);
+    res.status(201).json(user);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
 
 export const login = async (req, res) => {
-    try{
-        const user = await authService.login(req.body);
-        const token = generateToken(user._id);
-        res.status(200).json({message: "Login successfully", user, token});
-    }catch(error){
-        res.status(400).json({message: error.message});
-    }
-}
+  try {
+    const user = await authService.login(req.body);
+    const token = generateToken(user._id);
+    res.status(200).json({ message: "Login successfully", user, token });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+export const getUser = async (req, res) => {
+  try {
+    const user = await authService.getUser(req.user);
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
 
 // export const forgetPassword = async (req, res) => {
 //     try{

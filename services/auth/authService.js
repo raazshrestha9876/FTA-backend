@@ -30,17 +30,25 @@ export const register = async (userData) => {
 };
 
 export const login = async (userData) => {
-    const { email, password } = userData;
-    const user = await User.findOne({ email }).select("+password");
-    if(!user) {
-        throw new Error("Invalid credentials");
-    }
-    const isValidPassword = bcrypt.compare( password, user.password );
-    if(!isValidPassword) {
-        throw new Error("Invalid credentials");
-    }
-    return user;
-}
+  const { email, password } = userData;
+  const user = await User.findOne({ email }).select("+password");
+  if (!user) {
+    throw new Error("Invalid credentials");
+  }
+  const isValidPassword = bcrypt.compare(password, user.password);
+  if (!isValidPassword) {
+    throw new Error("Invalid credentials");
+  }
+  return user;
+};
+
+export const getUser = async (userId) => {
+  const user = await User.findById(userId).select("-password");
+  if (!user) {
+    throw new Error("User not found");
+  }
+  return user;
+};
 
 // export const forgetPassword = async (email) => {
 //     const user = await User.findOne({ email });
