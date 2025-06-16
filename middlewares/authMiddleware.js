@@ -4,13 +4,13 @@ import User from "../models/User.js";
 // Middleware to protect routes and check user roles
 // This middleware checks if the user is authenticated and has the required role to access the route
 export const protect = async (req, res, next) => {
-    const token = req.cookies.token || req.headers.authorization?.split(" ")[1];
+    const token = req.headers.authorization?.split(" ")[1];
     if (!token) {
         return res.status(401).json({ message: "Not authorized, no token" });
     }
     try{
         const decoded = jwt.verify(token, process.env.SECRET_KEY);
-        req.user = await User.findById(decoded.id).select("-password");
+        req.user = decoded.id;
         next();
     }catch(err){
         res.status(401).json({ message: "Not authorized, token failed" });
