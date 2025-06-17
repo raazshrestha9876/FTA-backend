@@ -28,6 +28,9 @@ const userSchema = new mongoose.Schema({
     weight: {
         type: Number,
     },
+    image: {
+        type: String,
+    },
     role: {
         type: String,
         enum: ['user', 'admin'],

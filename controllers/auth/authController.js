@@ -39,6 +39,15 @@ export const updateUser = async (req, res) => {
   }
 };
 
+export const updateUserImage = async (req, res) => {
+  try {
+    await authService.updateUserImage(req.user, req.body);
+    res.status(200).json({ message: "Profile updated successfully" });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 // export const forgetPassword = async (req, res) => {
 //     try{
 //         await authService.forgetPassword(req.body.email);
