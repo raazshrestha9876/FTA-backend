@@ -51,7 +51,7 @@ export const getUser = async (userId) => {
 };
 
 export const updateUser = async (userId, userData) => {
-  const { name, email, password, age, gender, height, weight } = userData;
+  const { name, email, password, age, height, weight } = userData;
   const user = await User.findById(userId);
   if (!user) {
     throw new Error("User not found");
@@ -68,7 +68,6 @@ export const updateUser = async (userId, userData) => {
         email,
         password: hashedPassword,
         age,
-        gender,
         height,
         weight,
       },
@@ -76,6 +75,15 @@ export const updateUser = async (userId, userData) => {
     { new: true }
   );
   return updatedUser;
+};
+
+export const updateUserImage = async (userId, userData) => {
+  const {image} = userData;
+  const user = await User.findById(userId);
+  if (!user) {
+    throw new Error("User not found");
+  }
+  await User.findByIdAndUpdate(userId, {image:image}, { new: true });
 };
 
 // export const forgetPassword = async (email) => {
