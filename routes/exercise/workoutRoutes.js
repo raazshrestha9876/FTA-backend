@@ -1,4 +1,4 @@
-import { stopWorkout, startWorkout } from "../../controllers/exercise/workoutController";
+import { stopWorkout, startWorkout } from "../../controllers/exercise/workoutController.js";
 import express from "express";
 
 const router = express.Router();

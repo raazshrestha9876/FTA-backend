@@ -1,10 +1,10 @@
 
-import * as workoutService from '../../services/workoutService.js';
+import * as workoutService from '../../services/exercise/workoutService.js';
  
 export const startWorkout = async (req, res) => {
     try{
-        const { userId, exerciseIds } = req.body;
-        const workout = await workoutService.startWorkout(userId, exerciseIds);
+        const { exerciseIds } = req.body;
+        const workout = await workoutService.startWorkout(req.user, exerciseIds);
         res.status(201).json(workout);
     }catch(error){
         res.status(400).json({message: error.message});

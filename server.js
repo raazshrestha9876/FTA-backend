@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/auth/authRoutes.js"
-// import profileRoutes from './routes/profileRoutes';
+
 import cookieParser from "cookie-parser";
 import categoryRoutes from "./routes/exercise/categoryRoutes.js";
 import subcategoryRoutes from "./routes/exercise/subCategoryRoutes.js";
@@ -12,6 +12,7 @@ import dietCategoryRoute from "./routes/nutrition/dietCategoryRoute.js";
 import dietSubcategoryRoute from "./routes/nutrition/dietSubcategoryRoute.js";
 import dietRoute from "./routes/nutrition/dietRoute.js";
 import reviewRoute from './routes/review/reviewRoute.js';
+import workoutRoute from "./routes/exercise/workoutRoutes.js"
 
 // import botRoute from "./routes/bot/botRoute.js"
 // import http from "http";
@@ -57,7 +58,8 @@ app.use('/api/auth', authRoutes);
 app.use("/api/exercise/categories", categoryRoutes);
 app.use("/api/exercise/subcategories", subcategoryRoutes);
 app.use("/api/exercise/workout", exerciseRoutes);
-// app.use('/api/exercise/workout', workoutRoutes);
+app.use('/api/exercise/workout', workoutRoute);
+
 app.use("/api/nutrition/categories", dietCategoryRoute);
 app.use("/api/nutrition/subcategories", dietSubcategoryRoute);
 app.use("/api/nutrition/diet", dietRoute);

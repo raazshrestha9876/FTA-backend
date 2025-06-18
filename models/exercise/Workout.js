@@ -18,17 +18,14 @@ const workoutSchema = new mongoose.Schema(
       type: Date,
       required: true,
     },
-    end: {
+    endTime: {
       type: Date,
-      required: true,
     },
-    durationTotal: {
+    duration: {
       type: Number,
-      required: true,
     },
     caloriesBurned: {
       type: Number,
-      required: true,
     },
   },
   { timestamps: true }
