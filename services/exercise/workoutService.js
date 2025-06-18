@@ -1,5 +1,5 @@
 import Workout from "../../models/exercise/Workout.js";
-import User from "../../models/User.js";
+import User from "../../models/user/User.js";
 
 export const startWorkout = async (userId, exerciseIds) => {
   const user = await User.findById(userId);
@@ -28,7 +28,6 @@ export const stopWorkout = async (workoutId) => {
   const durationMs = endTime - workout.startTime;
   const durationMinutes = Math.floor(durationMs / 60000);
   const durationHours = durationMinutes / 60;
-
   const userWeightKg = workout.user.weight || 70;
   let totalCalories = 0;
 

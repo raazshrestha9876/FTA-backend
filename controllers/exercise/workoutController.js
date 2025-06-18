@@ -4,6 +4,7 @@ import * as workoutService from '../../services/exercise/workoutService.js';
 export const startWorkout = async (req, res) => {
     try{
         const { exerciseIds } = req.body;
+        console.log(exerciseIds)
         const workout = await workoutService.startWorkout(req.user, exerciseIds);
         res.status(201).json(workout);
     }catch(error){
