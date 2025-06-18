@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
-import authRoutes from "./routes/auth/authRoutes.js"
+import authRoutes from "./routes/auth/authRoutes.js";
 
 import cookieParser from "cookie-parser";
 import categoryRoutes from "./routes/exercise/categoryRoutes.js";
@@ -11,13 +11,12 @@ import cors from "cors";
 import dietCategoryRoute from "./routes/nutrition/dietCategoryRoute.js";
 import dietSubcategoryRoute from "./routes/nutrition/dietSubcategoryRoute.js";
 import dietRoute from "./routes/nutrition/dietRoute.js";
-import reviewRoute from './routes/review/reviewRoute.js';
-import workoutRoute from "./routes/exercise/workoutRoutes.js"
+import reviewRoute from "./routes/review/reviewRoute.js";
+import workoutRoute from "./routes/exercise/workoutRoutes.js";
 
 // import botRoute from "./routes/bot/botRoute.js"
 // import http from "http";
 // import { Socket } from "socket.io";
-
 
 dotenv.config();
 
@@ -53,12 +52,12 @@ connectDB();
 //   });
 // });
 
-app.use('/api/auth', authRoutes);
+app.use("/api/auth", authRoutes);
 // app.use('/api/profile', profileRoutes);
 app.use("/api/exercise/categories", categoryRoutes);
 app.use("/api/exercise/subcategories", subcategoryRoutes);
-app.use("/api/exercise/workout", exerciseRoutes);
-app.use('/api/exercise/workout', workoutRoute);
+app.use("/api/exercise/exercises", exerciseRoutes);
+app.use("/api/exercise/workout", workoutRoute);
 
 app.use("/api/nutrition/categories", dietCategoryRoute);
 app.use("/api/nutrition/subcategories", dietSubcategoryRoute);
