@@ -63,7 +63,7 @@ app.use("/api/nutrition/categories", dietCategoryRoute);
 app.use("/api/nutrition/subcategories", dietSubcategoryRoute);
 app.use("/api/nutrition/diet", dietRoute);
 app.use("/api/review", reviewRoute);
-// app.use("/api/bot", botRoute );
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, "0.0.0.0", () => {
