@@ -7,13 +7,11 @@ const workoutSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    exercises: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Exercise",
-        required: true,
-      },
-    ],
+    exercise: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Exercise",
+      required: true,
+    },
     startTime: {
       type: Date,
       required: true,
