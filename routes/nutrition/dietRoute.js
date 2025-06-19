@@ -9,8 +9,4 @@ router.get('/list', getAllDiet);
 router.get('/:dietId', getDietById );
 router.get('/subcategory/:subcategoryId', getDietBySubcategory);
 
-
-
-
-
 export default router;

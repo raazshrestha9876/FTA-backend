@@ -1,7 +1,7 @@
 
 
-import Category from "../../models/exercise/Category.js";
-import * as subcategoryService from '../../services/exercise/subcategoryService.js'
+import ExerciseCategory from '../../models/exercise/ExerciseCategory.js';
+import * as subcategoryService from '../../services/exercise/exerciseSubcategoryService.js'
 
 export const getAllSubcategories = async (req, res) => {
   try {
@@ -28,7 +28,7 @@ export const getSubcategoryByCategory = async (req, res) => {
 export const createSubcategory = async (req, res) => {
   try {
     const { category, dayNumber, name, description } = req.body;
-    const categoryExists = await Category.findById(category);
+    const categoryExists = await ExerciseCategory.findById(category);
     if (!categoryExists) {
       return res.status(404).json({ message: "Category not found" });
     }

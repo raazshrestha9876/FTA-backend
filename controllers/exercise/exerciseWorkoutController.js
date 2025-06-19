@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import Workout from "../../models/exercise/Workout.js";
-import * as workoutService from "../../services/exercise/workoutService.js";
+import * as workoutService from "../../services/exercise/exerciseWorkoutService.js";
+import ExerciseWorkout from "../../models/exercise/ExerciseWorkout.js";
 
 export const startWorkout = async (req, res) => {
   try {
@@ -24,7 +24,7 @@ export const stopWorkout = async (req, res) => {
 
 export const getTotalCalories = async (req, res) => {
   try {
-    const results = await Workout.aggregate([
+    const results = await ExerciseWorkout.aggregate([
       { $match: { user: new mongoose.Types.ObjectId(req.user) }},
       {
         $group: {

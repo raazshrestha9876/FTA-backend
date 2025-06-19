@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 import User from "../models/user/User.js";
 import connectDB from "../config/db.js";
 
-
 const seedAdmin = async () => {
   try {
     connectDB();
@@ -25,5 +24,4 @@ const seedAdmin = async () => {
   }
 };
 
-// Run the seed function
 seedAdmin();

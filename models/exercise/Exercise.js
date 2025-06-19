@@ -4,12 +4,13 @@ const ExerciseSchema = new mongoose.Schema(
   {
     subcategory: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Subcategory",
+      ref: "ExerciseSubcategory",
       required: true,
     },
     name: {
       type: String,
       required: true,
+      unique: true,
     },
     image: {
       type: String,

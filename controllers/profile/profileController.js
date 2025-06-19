@@ -22,11 +22,10 @@ export const updateUserProfile = async (req, res) => {
 };
 
 export const deleteUserProfile = async (req, res) => {
-    try{
-        const user = await ProfileService.deleteUserProfile(req.params.userId);
-        res.status(200).json({message: "User deleted successfully"});
-    }catch(error){
-        res.status(400).json({message: error.message});
-    }
-}
-
+  try {
+    const user = await ProfileService.deleteUserProfile(req.params.userId);
+    res.status(200).json({ message: "User deleted successfully" });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};

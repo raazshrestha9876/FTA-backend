@@ -2,7 +2,7 @@ import express from "express";
 import {
   getAllCategories,
   createCategory,
-} from "../../controllers/exercise/categoryController.js";
+} from "../../controllers/exercise/exerciseCategoryController.js"
 import upload from "../../middlewares/multer.js";
 
 const router = express.Router();

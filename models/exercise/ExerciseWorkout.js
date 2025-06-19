@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const workoutSchema = new mongoose.Schema(
+const exerciseWorkoutSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -29,5 +29,5 @@ const workoutSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Workout = mongoose.model("Workout", workoutSchema);
-export default Workout;
+const ExerciseWorkout = mongoose.model("ExerciseWorkout", exerciseWorkoutSchema);
+export default ExerciseWorkout;

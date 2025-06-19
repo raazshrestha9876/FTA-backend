@@ -3,8 +3,7 @@ import {
   createSubcategory,
   getAllSubcategories,
   getSubcategoryByCategory,
-} from "../../controllers/exercise/SubcategoryController.js";
-import upload from "../../middlewares/multer.js";
+} from "../../controllers/exercise/exerciseSubcategoryController.js";
 
 const router = express.Router();
 

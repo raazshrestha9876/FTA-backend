@@ -1,4 +1,4 @@
-import * as categoryService from "../../services/exercise/categoryService.js";
+import * as categoryService from "../../services/exercise/exerciseCategoryService.js";
 
 export const getAllCategories = async (req, res) => {
   try {

@@ -53,28 +53,3 @@ export const createExercise = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
-// export const updateExercise = async (req, res) => {
-//     try {
-//         const { exerciseId } = req.params;
-//         const exercise = await exerciseService.updateExercise(exerciseId, req.body);
-//         if (!exercise) {
-//             return res.status(404).json({ message: "Exercise not found" });
-//         }
-//         res.status(200).json(exercise);
-//     }
-//     catch (error) {
-//         res.status(500).json({ message: error.message });
-//     }
-// }
-
-// export const deleteExercise = async (req, res) => {
-//     try {
-//         const { exerciseId } = req.params;
-//         await exerciseService.deleteExercise(exerciseId);
-//         res.status(204).json({ message: "Exercise deleted" });
-//     }
-//     catch (error) {
-//         res.status(500).json({ message: error.message });
-//     }
-// }

@@ -23,6 +23,5 @@ export const getDietSubcategoryByCategory = async (categoryId) => {
   const dietSubcategories = await DietSubcategory.find({
     category: categoryId,
   });
-
   return dietSubcategories;
 };

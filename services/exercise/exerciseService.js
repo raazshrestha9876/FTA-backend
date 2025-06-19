@@ -72,16 +72,3 @@ export const createExercise = async (exerciseData, exerciseImage) => {
   return exercise;
 };
 
-// export const updateExercise = async (exerciseId, exerciseData) => {
-//   const { name, instructions, image, equipment, videoUrl, day } = exerciseData;
-//   const exercise = await Exercise.findByIdAndUpdate(
-//     exerciseId,
-//     { name, instructions, image, equipment, videoUrl, day },
-//     { new: true }
-//   );
-//   return exercise;
-// };
-// export const deleteExercise = async (exerciseId) => {
-//   const exercise = await Exercise.findByIdAndDelete(exerciseId);
-//   return exercise;
-// };

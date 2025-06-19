@@ -1,4 +1,4 @@
-import Workout from "../../models/exercise/Workout.js";
+import ExerciseWorkout from "../../models/exercise/ExerciseWorkout.js";
 import User from "../../models/user/User.js";
 
 export const startWorkout = async (userId, exerciseId) => {
@@ -6,7 +6,7 @@ export const startWorkout = async (userId, exerciseId) => {
   if (!user) {
     throw new Error("User not found");
   }
-  const newWorkout = new Workout({
+  const newWorkout = new ExerciseWorkout({
     user: userId,
     exercise: exerciseId,
     startTime: new Date(),
@@ -18,25 +18,26 @@ export const startWorkout = async (userId, exerciseId) => {
 };
 
 export const stopWorkout = async (workoutId) => {
-  const workout = await Workout.findById(workoutId).populate("exercise user");
+  const workout = await ExerciseWorkout.findById(workoutId).populate(
+    "exercise user"
+  );
   if (!workout) {
     throw new Error("Workout not found");
   }
   const endTime = new Date();
   const durationMs = endTime - workout.startTime;
-  const durationMinutes = Math.floor(durationMs / 60000);
+  const durationSeconds = Math.floor(durationMs / 1000);
+  const durationMinutes = durationSeconds / 60;
   const durationHours = durationMinutes / 60;
-
   const userWeightKg = workout.user.weight || 70;
 
   const MET = workout.exercise.metValue;
   const calories = MET * userWeightKg * durationHours;
 
   workout.endTime = endTime;
-  workout.duration = durationMinutes;
-  workout.caloriesBurned = Math.round(calories);
+  workout.duration = durationSeconds;
+  workout.caloriesBurned = calories.toFixed(2);
 
   await workout.save();
   return workout;
 };
-
