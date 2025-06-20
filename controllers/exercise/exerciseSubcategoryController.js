@@ -1,7 +1,5 @@
-
-
-import ExerciseCategory from '../../models/exercise/ExerciseCategory.js';
-import * as subcategoryService from '../../services/exercise/exerciseSubcategoryService.js'
+import ExerciseCategory from "../../models/exercise/ExerciseCategory.js";
+import * as subcategoryService from "../../services/exercise/exerciseSubcategoryService.js";
 
 export const getAllSubcategories = async (req, res) => {
   try {
@@ -13,14 +11,18 @@ export const getAllSubcategories = async (req, res) => {
 };
 
 export const getSubcategoryByCategory = async (req, res) => {
-  try{
+  try {
     const { category } = req.params;
-    const Subcategory = await subcategoryService.getSubcategoryByCategory(category);
+    const Subcategory = await subcategoryService.getSubcategoryByCategory(
+      category
+    );
     if (!Subcategory) {
-      return res.status(404).json({ message: "No Subcategory found for this category" });
+      return res
+        .status(404)
+        .json({ message: "No Subcategory found for this category" });
     }
     res.status(200).json(Subcategory);
-  }catch (error) {
+  } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
@@ -32,7 +34,12 @@ export const createSubcategory = async (req, res) => {
     if (!categoryExists) {
       return res.status(404).json({ message: "Category not found" });
     }
-    const subcategory = await subcategoryService.createSubcategory({ category, dayNumber, name, description });
+    const subcategory = await subcategoryService.createSubcategory({
+      category,
+      dayNumber,
+      name,
+      description,
+    });
     res.status(201).json(subcategory);
   } catch (error) {
     res.status(500).json({ message: error.message });

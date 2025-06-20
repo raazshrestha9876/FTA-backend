@@ -17,7 +17,7 @@ export const startWorkout = async (userId, exerciseId) => {
   return newWorkout;
 };
 
-export const stopWorkout = async (workoutId) => {
+export const stopWorkout = async (workoutId, durationSeconds) => {
   const workout = await ExerciseWorkout.findById(workoutId).populate(
     "exercise user"
   );
@@ -25,13 +25,11 @@ export const stopWorkout = async (workoutId) => {
     throw new Error("Workout not found");
   }
   const endTime = new Date();
-  const durationMs = endTime - workout.startTime;
-  const durationSeconds = Math.floor(durationMs / 1000);
-  const durationMinutes = durationSeconds / 60;
-  const durationHours = durationMinutes / 60;
-  const userWeightKg = workout.user.weight || 70;
 
+  const userWeightKg = workout.user.weight || 70;
   const MET = workout.exercise.metValue;
+
+  const durationHours = durationSeconds / 3600;
   const calories = MET * userWeightKg * durationHours;
 
   workout.endTime = endTime;

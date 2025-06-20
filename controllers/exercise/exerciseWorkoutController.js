@@ -15,7 +15,8 @@ export const startWorkout = async (req, res) => {
 export const stopWorkout = async (req, res) => {
   try {
     const { id } = req.params;
-    const workout = await workoutService.stopWorkout(id);
+    const { durationSeconds } = req.body;
+    const workout = await workoutService.stopWorkout(id, durationSeconds);
     res.status(200).json(workout);
   } catch (error) {
     res.status(400).json({ message: error.message });
