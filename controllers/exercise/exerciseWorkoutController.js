@@ -33,7 +33,7 @@ export const userCaloriesStatsAnalytics = async (req, res) => {
             {
               $group: {
                 _id: {
-                  $dateToString: { format: "%Y-%m-%d", date: "$created_at" },
+                  $dateToString: { format: "%Y-%m-%d", date: "$createdAt" },
                 },
                 totalDailyCalories: { $sum: "$caloriesBurned" },
               },
@@ -47,18 +47,50 @@ export const userCaloriesStatsAnalytics = async (req, res) => {
               },
             },
           ],
-          totalCalories: [
+          averageWeekCalories: [
             {
               $group: {
-                _id: "$user",
+                _id: {
+                  $dateToString: { format: "%U", date: "$createdAt" },
+                },
+                averageWeekCalories: { $avg: "$caloriesBurned" },
+              },
+            },
+            { $sort: { _id: 1 } },
+            {
+              $project: {
+                _id: 0,
+                week: "$_id",
+                averageWeekCalories: 1,
+              },
+            },
+          ],
+          cardWorkoutStats: [
+            {
+              $project: {
+                caloriesBurned: 1,
+                duration: 1,
+                streakDays: {
+                  $dateToString: { format: "%Y-%m-%d", date: "$createdAt" },
+                },
+              },
+            },
+            {
+              $group: {
+                _id: null,
                 totalCalories: { $sum: "$caloriesBurned" },
+                totalWorkouts: { $sum: 1 },
+                totalHoursTrained: { $sum: "$duration" },
+                streakDays: { $addToSet: "$streakDays" },
               },
             },
             {
               $project: {
                 _id: 0,
-                user: "$_id",
                 totalCalories: 1,
+                totalWorkouts: 1,
+                totalHoursTrained: 1,
+                streakDays: { $size: "$streakDays" },
               },
             },
           ],
@@ -67,11 +99,15 @@ export const userCaloriesStatsAnalytics = async (req, res) => {
     ]);
 
     const dailyCalories = results[0].dailyCalories;
-    const totalCalories = results[0].totalCalories[0] || { totalCalories: 0 };
+    const cardWorkoutStats = results[0].cardWorkoutStats[0];
+    const averageWeekCalories = results[0].averageWeekCalories[0] || {
+      averageWeekCalories: 0,
+    };
 
     res.status(200).json({
       dailyCalories,
-      totalCalories,
+      averageWeekCalories,
+      cardWorkoutStats,
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
