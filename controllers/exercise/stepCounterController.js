@@ -37,7 +37,7 @@ export const setGoalForStepCounter = async (req, res) => {
     console.error("Step goal error:", error);
     res.status(500).json({
       success: false,
-      message: "Error setting step goal",
+      message: error.message,
     });
   }
 };
@@ -72,10 +72,31 @@ export const setStepCounterStats = async (req, res) => {
       message: "Step stats updated successfully.",
     });
   } catch (error) {
-    
     res.status(500).json({
       success: false,
-      message: "Error setting step counter stats",
+      message: error.message,
+    });
+  }
+};
+
+export const getStepCounterStats = async (req, res) => {
+  try {
+    const userId = req.user;
+    const existingUserGoal = await StepCounter.findOne({ user: userId });
+    if (!existingUserGoal) {
+      return res.status(404).json({
+        success: false,
+        message: "No active step stats found for the user.",
+      });
+    }
+    res.status(200).json({
+        success: true,
+        data: existingUserGoal,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
     });
   }
 };
