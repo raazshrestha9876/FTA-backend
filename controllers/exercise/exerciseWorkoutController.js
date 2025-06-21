@@ -114,6 +114,7 @@ export const userCaloriesStatsAnalytics = async (req, res) => {
   }
 };
 
+
 export const totalCaloriesBurnedAllUserStats = async (req, res) => {
   try {
     const results = ExerciseWorkout.aggregate([
@@ -135,3 +136,6 @@ export const totalCaloriesBurnedAllUserStats = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+
+

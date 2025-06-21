@@ -15,6 +15,7 @@ import exerciseWorkoutRoute from "./routes/exercise/exerciseWorkoutRoutes.js";
 import dietCategoryRoute from "./routes/nutrition/dietCategoryRoute.js";
 import dietSubcategoryRoute from "./routes/nutrition/dietSubcategoryRoute.js";
 import dietRoute from "./routes/nutrition/dietRoute.js";
+import stepCounterRoute from "./routes/stepCounter/stepCounterRoutes.js";
 
 dotenv.config();
 
@@ -41,6 +42,7 @@ app.use("/api/exercise/categories", exerciseCategoryRoute);
 app.use("/api/exercise/subcategories", exerciseSubcategoryRoute);
 app.use("/api/exercise/exercises", exerciseRoute);
 app.use("/api/exercise/workout", exerciseWorkoutRoute);
+app.use("/api/step-counter", stepCounterRoute);
 
 app.use("/api/nutrition/categories", dietCategoryRoute);
 app.use("/api/nutrition/subcategories", dietSubcategoryRoute);
