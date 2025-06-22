@@ -90,8 +90,8 @@ export const getStepCounterStats = async (req, res) => {
       });
     }
     res.status(200).json({
-        success: true,
-        data: existingUserGoal,
+      success: true,
+      data: existingUserGoal,
     });
   } catch (error) {
     res.status(500).json({
