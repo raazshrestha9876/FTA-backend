@@ -26,7 +26,7 @@ const exerciseSubcategorySchema = new mongoose.Schema(
 );
 
 exerciseSubcategorySchema.index(
-  { dayNumber: 1, category: 1 },
+  { category: 1, dayNumber: 1 },
   { unique: true }
 );
 
@@ -34,4 +34,5 @@ const ExerciseSubcategory = mongoose.model(
   "ExerciseSubcategory",
   exerciseSubcategorySchema
 );
+
 export default ExerciseSubcategory;

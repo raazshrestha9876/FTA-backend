@@ -13,12 +13,15 @@ const stepCounterSchema = new mongoose.Schema(
     },
     steps: {
       type: Number,
+      default: 0,
     },
     calories: {
       type: Number,
+      default: 0,
     },
     distance: {
       type: Number,
+      default: 0,
     },
     expiresAt: { type: Date, required: true },
   },
