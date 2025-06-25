@@ -1,6 +1,5 @@
 import ExerciseSubcategory from '../../models/exercise/ExerciseSubcategory.js';
 
-
 export const getAllSubcategories = async () => {
     const subcategories = await ExerciseSubcategory.find().populate({'path': 'category'});
     return subcategories;
