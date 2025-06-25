@@ -4,7 +4,7 @@ import { addWaterIntake, getWaterIntakeLog } from "../../controllers/exercise/wa
 
 const router = express.Router();
 
-router.post("/add-water-intake", protect, addWaterIntake);
-router.get("/get-water-intake-log", protect, getWaterIntakeLog);
+router.post("/add", protect, addWaterIntake);
+router.get("/get-log", protect, getWaterIntakeLog);
 
 export default router;

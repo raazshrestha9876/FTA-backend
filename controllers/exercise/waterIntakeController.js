@@ -6,29 +6,15 @@ export const addWaterIntake = async (req, res) => {
     const { water } = req.body;
     const userId = req.user;
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const expiresAt = new Date(today.getTime() + 24 * 60 * 60 * 1000);
-
-    let waterIntake = await WaterIntake.findOne({
-      user: userId,
-      date: today,
-    });
-
-    if (waterIntake) {
-      waterIntake.water += water;
-    } else {
-    }
-    waterIntake = await WaterIntake({
+    const waterIntake = await WaterIntake({
       user: userId,
       water,
-      date: today,
-      expiresAt: expiresAt,
     });
     await waterIntake.save();
+
     res.status(201).json({
       message: "Water intake added successfully",
+      data: waterIntake,
     });
   } catch (error) {
     res.status(500).json({

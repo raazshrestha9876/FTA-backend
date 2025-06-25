@@ -12,14 +12,6 @@ const waterIntakeSchema = new mongoose.Schema(
       required: true,
       default: 0,
     },
-    date: {
-      type: Date,
-      required: true,
-    },
-    expiresAt: {
-      type: Date,
-      required: true,
-    },
   },
   { timestamps: true }
 );
