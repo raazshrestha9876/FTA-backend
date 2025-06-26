@@ -141,4 +141,3 @@ export const totalCaloriesBurnedAllUserStats = async (req, res) => {
 };
 
 
-
