@@ -1,11 +1,13 @@
 import Exercise from "../../models/exercise/Exercise.js";
 import ExerciseWorkout from "../../models/exercise/ExerciseWorkout.js";
+import Diet from "../../models/nutrition/Diet.js";
+import User from "../../models/user/User.js";
 
 export const adminCardStats = async (req, res) => {
   try {
     const totalExercise = await Exercise.countDocuments();
     const totalUser = await User.countDocuments({ role: { $ne: "admin" } });
-    const totalNutrition = await Nutrition.countDocuments();
+    const totalNutrition = await Diet.countDocuments();
     const engagedUserIds = await ExerciseWorkout.distinct("user");
     const engagedUserCount = await User.countDocuments({
       _id: { $in: engagedUserIds },
