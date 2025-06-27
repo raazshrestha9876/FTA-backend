@@ -117,21 +117,24 @@ export const userCaloriesStatsAnalytics = async (req, res) => {
 
 export const totalCaloriesBurnedAllUserStats = async (req, res) => {
   try {
-    const results = ExerciseWorkout.aggregate([
+    const results = await ExerciseWorkout.aggregate([
       {
         $group: {
-          _id: null,
-          totalCalories: { $sum: "$caloriesBurned" },
+          _id: {
+            $dateToString: { format: "%Y-%m-%d", date: "$createdAt" },
+          },
+          totalDailyCalories: { $sum: "$caloriesBurned" },
         },
       },
       {
         $project: {
           _id: 0,
-          totalCalories: 1,
+          date: "$_id",
+          totalDailyCalories: 1,
         },
       },
     ]);
-    res.status(200).json(results[0] || { totalCalories: 0 });
+    res.status(200).json(results);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
