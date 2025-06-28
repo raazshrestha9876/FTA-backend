@@ -114,7 +114,6 @@ export const userCaloriesStatsAnalytics = async (req, res) => {
   }
 };
 
-
 export const totalCaloriesBurnedAllUserStats = async (req, res) => {
   try {
     const results = await ExerciseWorkout.aggregate([
@@ -140,4 +139,15 @@ export const totalCaloriesBurnedAllUserStats = async (req, res) => {
   }
 };
 
-
+export const userWorkoutHistory = async (req, res) => {
+  try {
+    const workout = await ExerciseWorkout.find({ user: req.user })
+      .populate("exercise")
+      .sort({
+        createdAt: -1,
+      });
+    res.status(200).json(workout);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
