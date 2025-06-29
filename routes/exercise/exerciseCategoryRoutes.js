@@ -4,10 +4,11 @@ import {
   createCategory,
 } from "../../controllers/exercise/exerciseCategoryController.js"
 import upload from "../../middlewares/multer.js";
+import { authorizeRoles, protect } from "../../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
 router.get("/list", getAllCategories);
-router.post("/add", upload.single("image"), createCategory);
+router.post("/add", protect, authorizeRoles('admin'), upload.single("image"), createCategory);
 
 export default router;

@@ -47,30 +47,30 @@ export const createSubcategory = async (req, res) => {
   }
 };
 
-export const getUserSubcategoriesByCategory = async (req, res) => {
-  try {
-    const userId = req.user;
-    const { categoryId } = req.params;
+// export const getUserSubcategoriesByCategory = async (req, res) => {
+//   try {
+//     const userId = req.user;
+//     const { categoryId } = req.params;
 
-    const workouts = await ExerciseWorkout.find({ user: userId }).populate({
-      path: "exercise",
-      populate: {
-        path: "subcategory",
-        model: "ExerciseSubcategory",
-      },
-    });
+//     const workouts = await ExerciseWorkout.find({ user: userId }).populate({
+//       path: "exercise",
+//       populate: {
+//         path: "subcategory",
+//         model: "ExerciseSubcategory",
+//       },
+//     });
 
-    const matchedSubcategories = workouts
-      .map((workout) => workout.exercise?.subcategory)
-      .filter((sub) => sub.category.toString() === categoryId.toString());
+//     const matchedSubcategories = workouts
+//       .map((workout) => workout.exercise?.subcategory)
+//       .filter((sub) => sub.category.toString() === categoryId.toString());
 
-    const uniqueSubcategoriesMap = {};
-    matchedSubcategories.forEach((subcategory) => {
-      uniqueSubcategoriesMap[subcategory._id] = subcategory;
-    });
-    const uniqueSubcategories = Object.values(uniqueSubcategoriesMap);
-    res.status(200).json(uniqueSubcategories);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
+//     const uniqueSubcategoriesMap = {};
+//     matchedSubcategories.forEach((subcategory) => {
+//       uniqueSubcategoriesMap[subcategory._id] = subcategory;
+//     });
+//     const uniqueSubcategories = Object.values(uniqueSubcategoriesMap);
+//     res.status(200).json(uniqueSubcategories);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// };

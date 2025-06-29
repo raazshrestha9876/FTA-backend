@@ -1,5 +1,5 @@
 import express from "express";
-import { protect } from "../../middlewares/authMiddleware.js";
+import { authorizeRoles, protect } from "../../middlewares/authMiddleware.js";
 import {
   getGoalForStepCounter,
   getStepCounterStats,
@@ -9,9 +9,9 @@ import {
 
 const router = express.Router();
 
-router.post("/add-goal", protect, setGoalForStepCounter);
-router.get("/get-goal", protect, getGoalForStepCounter);
-router.post("/add-counter-stats", protect, setStepCounterStats);
-router.get("/get-counter-stats", protect, getStepCounterStats);
+router.post("/add-goal", protect, authorizeRoles('user'), setGoalForStepCounter);
+router.get("/get-goal", protect, authorizeRoles('user'), getGoalForStepCounter);
+router.post("/add-counter-stats", protect, authorizeRoles('user'), setStepCounterStats);
+router.get("/get-counter-stats", protect, authorizeRoles('user'), getStepCounterStats);
 
 export default router;

@@ -5,13 +5,13 @@ import {
   getSubcategoryByCategory,
   getUserSubcategoriesByCategory,
 } from "../../controllers/exercise/exerciseSubcategoryController.js";
-import { protect } from "../../middlewares/authMiddleware.js";
+import { authorizeRoles, protect } from "../../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
-router.get("/list", getAllSubcategories);
+router.get("/list", protect, authorizeRoles('admin'), getAllSubcategories);
 router.get("/:category", getSubcategoryByCategory);
-router.post("/add", createSubcategory);
-router.get("/user-subcategories/:categoryId", protect, getUserSubcategoriesByCategory);
+router.post("/add", protect, authorizeRoles('admin'), createSubcategory);
+// router.get("/user-subcategories/:categoryId", protect, getUserSubcategoriesByCategory);
 
 export default router;

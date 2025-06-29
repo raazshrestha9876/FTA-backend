@@ -6,15 +6,13 @@ import {
   userWorkoutHistory,
 } from "../../controllers/exercise/exerciseWorkoutController.js";
 import express from "express";
-import { protect } from "../../middlewares/authMiddleware.js";
+import { authorizeRoles, protect } from "../../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
-router.get("/get-total-user-calories", protect,  userCaloriesStatsAnalytics);
-router.get("/get-total-all-user-calories", totalCaloriesBurnedAllUserStats);
-router.get("/user-workout-history", protect, userWorkoutHistory);
-router.post("/start", protect, startWorkout);
-router.post("/stop/:id", protect, stopWorkout);
+router.get("/user-workout-history", protect, authorizeRoles('user'), userWorkoutHistory);
+router.post("/start", protect, authorizeRoles('user'), startWorkout);
+router.post("/stop/:id", protect, authorizeRoles('user'), stopWorkout);
 
 
 export default router;
