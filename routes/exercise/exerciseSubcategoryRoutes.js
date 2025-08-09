@@ -3,7 +3,6 @@ import {
   createSubcategory,
   getAllSubcategories,
   getSubcategoryByCategory,
-  getUserSubcategoriesByCategory,
 } from "../../controllers/exercise/exerciseSubcategoryController.js";
 import { authorizeRoles, protect } from "../../middlewares/authMiddleware.js";
 

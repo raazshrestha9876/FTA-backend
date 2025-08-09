@@ -12,7 +12,7 @@ import exerciseSubcategoryRoute from "./routes/exercise/exerciseSubcategoryRoute
 import exerciseRoute from "./routes/exercise/exerciseRoutes.js";
 import exerciseWorkoutRoute from "./routes/exercise/exerciseWorkoutRoutes.js";
 
-import dietCategoryRoute from "./routes/nutrition/dietCategoryRoute.js";
+import dietCategoryRoute from "./routes/nutrition/dietCategoryRoute.js"
 import dietSubcategoryRoute from "./routes/nutrition/dietSubcategoryRoute.js";
 import dietRoute from "./routes/nutrition/dietRoute.js";
 import stepCounterRoute from "./routes/stepCounter/stepCounterRoutes.js";
@@ -39,7 +39,6 @@ app.use("/uploads", express.static("uploads"));
 connectDB();
 
 app.use("/api/auth", authRoute);
-
 app.use("/api/exercise/categories", exerciseCategoryRoute);
 app.use("/api/exercise/subcategories", exerciseSubcategoryRoute);
 app.use("/api/exercise/exercises", exerciseRoute);

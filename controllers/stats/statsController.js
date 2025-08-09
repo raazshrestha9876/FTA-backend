@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import Exercise from "../../models/exercise/Exercise.js";
 import ExerciseWorkout from "../../models/exercise/ExerciseWorkout.js";
 import Diet from "../../models/nutrition/Diet.js";

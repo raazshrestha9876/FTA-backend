@@ -1,8 +1,6 @@
 import {
   stopWorkout,
   startWorkout,
-  userCaloriesStatsAnalytics,
-  totalCaloriesBurnedAllUserStats,
   userWorkoutHistory,
 } from "../../controllers/exercise/exerciseWorkoutController.js";
 import express from "express";
